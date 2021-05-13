@@ -270,14 +270,14 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfaceSupportKHR(VkP
     if (NULL == pSupported) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "NULL pointer passed into vkGetPhysicalDeviceSurfaceSupportKHR for pSupported!\n");
-        assert(false && "GetPhysicalDeviceSurfaceSupportKHR: Error, null pSupported");
+        abort();
     }
     *pSupported = false;
 
     if (NULL == icd_term->dispatch.GetPhysicalDeviceSurfaceSupportKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceSurfaceSupportKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceSurfaceSupportKHR ICD pointer");
+        abort();
     }
 
     VkIcdSurface *icd_surface = (VkIcdSurface *)(uintptr_t)surface;
@@ -317,13 +317,13 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfaceCapabilitiesKH
     if (NULL == pSurfaceCapabilities) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "NULL pointer passed into vkGetPhysicalDeviceSurfaceCapabilitiesKHR for pSurfaceCapabilities!\n");
-        assert(false && "GetPhysicalDeviceSurfaceCapabilitiesKHR: Error, null pSurfaceCapabilities");
+        abort();
     }
 
     if (NULL == icd_term->dispatch.GetPhysicalDeviceSurfaceCapabilitiesKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceSurfaceCapabilitiesKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceSurfaceCapabilitiesKHR ICD pointer");
+        abort();
     }
 
     VkIcdSurface *icd_surface = (VkIcdSurface *)(uintptr_t)surface;
@@ -365,13 +365,13 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfaceFormatsKHR(VkP
     if (NULL == pSurfaceFormatCount) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "NULL pointer passed into vkGetPhysicalDeviceSurfaceFormatsKHR for pSurfaceFormatCount!\n");
-        assert(false && "GetPhysicalDeviceSurfaceFormatsKHR(: Error, null pSurfaceFormatCount");
+        abort();
     }
 
     if (NULL == icd_term->dispatch.GetPhysicalDeviceSurfaceFormatsKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceSurfaceCapabilitiesKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceSurfaceFormatsKHR ICD pointer");
+        abort();
     }
 
     VkIcdSurface *icd_surface = (VkIcdSurface *)(uintptr_t)surface;
@@ -415,13 +415,13 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfacePresentModesKH
     if (NULL == pPresentModeCount) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "NULL pointer passed into vkGetPhysicalDeviceSurfacePresentModesKHR for pPresentModeCount!\n");
-        assert(false && "GetPhysicalDeviceSurfacePresentModesKHR(: Error, null pPresentModeCount");
+        abort();
     }
 
     if (NULL == icd_term->dispatch.GetPhysicalDeviceSurfacePresentModesKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceSurfacePresentModesKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceSurfacePresentModesKHR ICD pointer");
+        abort();
     }
 
     VkIcdSurface *icd_surface = (VkIcdSurface *)(uintptr_t)surface;
@@ -632,7 +632,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL terminator_GetPhysicalDeviceWin32PresentationSupp
     if (NULL == icd_term->dispatch.GetPhysicalDeviceWin32PresentationSupportKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceWin32PresentationSupportKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceWin32PresentationSupportKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetPhysicalDeviceWin32PresentationSupportKHR(phys_dev_term->phys_dev, queueFamilyIndex);
@@ -746,7 +746,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL terminator_GetPhysicalDeviceWaylandPresentationSu
     if (NULL == icd_term->dispatch.GetPhysicalDeviceWaylandPresentationSupportKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceWaylandPresentationSupportKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceWaylandPresentationSupportKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetPhysicalDeviceWaylandPresentationSupportKHR(phys_dev_term->phys_dev, queueFamilyIndex, display);
@@ -862,7 +862,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL terminator_GetPhysicalDeviceXcbPresentationSuppor
     if (NULL == icd_term->dispatch.GetPhysicalDeviceXcbPresentationSupportKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceXcbPresentationSupportKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceXcbPresentationSupportKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetPhysicalDeviceXcbPresentationSupportKHR(phys_dev_term->phys_dev, queueFamilyIndex, connection,
@@ -977,7 +977,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL terminator_GetPhysicalDeviceXlibPresentationSuppo
     if (NULL == icd_term->dispatch.GetPhysicalDeviceXlibPresentationSupportKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceXlibPresentationSupportKHR!\n");
-        assert(false && "loader: null GetPhysicalDeviceXlibPresentationSupportKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetPhysicalDeviceXlibPresentationSupportKHR(phys_dev_term->phys_dev, queueFamilyIndex, dpy, visualID);
@@ -1095,7 +1095,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL terminator_GetPhysicalDeviceDirectFBPresentationS
     if (NULL == icd_term->dispatch.GetPhysicalDeviceDirectFBPresentationSupportEXT) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceDirectFBPresentationSupportEXT!\n");
-        assert(false && "loader: null GetPhysicalDeviceDirectFBPresentationSupportEXT ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetPhysicalDeviceDirectFBPresentationSupportEXT(phys_dev_term->phys_dev, queueFamilyIndex, dfb);
@@ -1435,7 +1435,8 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_CreateMetalSurfaceEXT(VkInstance insta
     struct loader_instance *ptr_instance = loader_get_instance(instance);
     if (!ptr_instance->wsi_metal_surface_enabled) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
-                   "VK_EXT_metal_surface extension not enabled. vkCreateMetalSurfaceEXT will not be executed.\n");
+                   "VK_EXT_metal_surface extension not enabled.  vkCreateMetalSurfaceEXT will not be executed.\n");
+        abort();
     }
 
     // Next, if so, proceed with the implementation of this function:
@@ -1588,7 +1589,7 @@ VKAPI_ATTR VkBool32 VKAPI_CALL terminator_GetPhysicalDeviceScreenPresentationSup
     if (NULL == icd_term->dispatch.GetPhysicalDeviceScreenPresentationSupportQNX) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetPhysicalDeviceScreenPresentationSupportQNX!\n");
-        assert(false && "loader: null GetPhysicalDeviceScreenPresentationSupportQNX ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetPhysicalDeviceScreenPresentationSupportQNX(phys_dev_term->phys_dev, queueFamilyIndex, window);
@@ -1682,7 +1683,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetDisplayPlaneSupportedDisplaysKHR(Vk
     if (NULL == icd_term->dispatch.GetDisplayPlaneSupportedDisplaysKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetDisplayPlaneSupportedDisplaysKHR!\n");
-        assert(false && "loader: null GetDisplayPlaneSupportedDisplaysKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetDisplayPlaneSupportedDisplaysKHR(phys_dev_term->phys_dev, planeIndex, pDisplayCount, pDisplays);
@@ -1714,7 +1715,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetDisplayModePropertiesKHR(VkPhysical
     if (NULL == icd_term->dispatch.GetDisplayModePropertiesKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetDisplayModePropertiesKHR!\n");
-        assert(false && "loader: null GetDisplayModePropertiesKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetDisplayModePropertiesKHR(phys_dev_term->phys_dev, display, pPropertyCount, pProperties);
@@ -1747,7 +1748,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_CreateDisplayModeKHR(VkPhysicalDevice 
     if (NULL == icd_term->dispatch.CreateDisplayModeKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkCreateDisplayModeKHR!\n");
-        assert(false && "loader: null CreateDisplayModeKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.CreateDisplayModeKHR(phys_dev_term->phys_dev, display, pCreateInfo, pAllocator, pMode);
@@ -1779,7 +1780,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetDisplayPlaneCapabilitiesKHR(VkPhysi
     if (NULL == icd_term->dispatch.GetDisplayPlaneCapabilitiesKHR) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD for selected physical device is not exporting vkGetDisplayPlaneCapabilitiesKHR!\n");
-        assert(false && "loader: null GetDisplayPlaneCapabilitiesKHR ICD pointer");
+        abort();
     }
 
     return icd_term->dispatch.GetDisplayPlaneCapabilitiesKHR(phys_dev_term->phys_dev, mode, planeIndex, pCapabilities);
@@ -1956,6 +1957,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDevicePresentRectanglesKHR(
     if (NULL == icd_term->dispatch.GetPhysicalDevicePresentRectanglesKHR) {
         loader_log(icd_term->this_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD associated with VkPhysicalDevice does not support GetPhysicalDevicePresentRectanglesKHX");
+        abort();
     }
     VkIcdSurface *icd_surface = (VkIcdSurface *)(surface);
     uint8_t icd_index = phys_dev_term->icd_index;
@@ -2253,7 +2255,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfaceCapabilities2K
 
     if (!ptr_instance->wsi_surface_enabled) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
-                   "VK_KHR_surface extension not enabled. vkGetPhysicalDeviceSurfaceCapabilities2KHR not executed!\n");
+                   "VK_KHR_surface extension not enabled.  vkGetPhysicalDeviceSurfaceCapabilities2KHR not executed!\n");
         return VK_SUCCESS;
     }
 
@@ -2331,7 +2333,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfaceFormats2KHR(Vk
 
     if (!ptr_instance->wsi_surface_enabled) {
         loader_log(ptr_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
-                   "VK_KHR_surface extension not enabled. vkGetPhysicalDeviceSurfaceFormats2KHR not executed!\n");
+                   "VK_KHR_surface extension not enabled.  vkGetPhysicalDeviceSurfaceFormats2KHR not executed!\n");
         return VK_SUCCESS;
     }
 

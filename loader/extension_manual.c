@@ -165,6 +165,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_ReleaseDisplayEXT(VkPhysicalDevice phy
                    "ICD \"%s\" associated with VkPhysicalDevice does not support vkReleaseDisplayEXT - Consequently, the call is "
                    "invalid because it should not be possible to acquire a display on this device",
                    icd_term->scanned_icd->lib_name);
+        abort();
     }
     return icd_term->dispatch.ReleaseDisplayEXT(phys_dev_term->phys_dev, display);
 }
@@ -249,6 +250,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceSurfacePresentModes2E
     if (NULL == icd_term->dispatch.GetPhysicalDeviceSurfacePresentModes2EXT) {
         loader_log(icd_term->this_instance, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "ICD associated with VkPhysicalDevice does not support GetPhysicalDeviceSurfacePresentModes2EXT");
+        abort();
     }
     VkIcdSurface *icd_surface = (VkIcdSurface *)(pSurfaceInfo->surface);
     uint8_t icd_index = phys_dev_term->icd_index;
