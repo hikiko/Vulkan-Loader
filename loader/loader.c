@@ -8321,9 +8321,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceFeatures2(VkPhysicalDevic
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceFeatures2 fpGetPhysicalDeviceFeatures2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceFeatures2 = icd_term->dispatch.GetPhysicalDeviceFeatures2KHR;
     } else {
         fpGetPhysicalDeviceFeatures2 = icd_term->dispatch.GetPhysicalDeviceFeatures2;
@@ -8331,6 +8333,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceFeatures2(VkPhysicalDevic
 
     if (fpGetPhysicalDeviceFeatures2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceFeatures2 != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceFeatures2(phys_dev_term->phys_dev, pFeatures);
     } else {
         // Emulate the call
@@ -8374,9 +8377,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceProperties2(VkPhysicalDev
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceProperties2 fpGetPhysicalDeviceProperties2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceProperties2 = icd_term->dispatch.GetPhysicalDeviceProperties2KHR;
     } else {
         fpGetPhysicalDeviceProperties2 = icd_term->dispatch.GetPhysicalDeviceProperties2;
@@ -8384,6 +8389,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceProperties2(VkPhysicalDev
 
     if (fpGetPhysicalDeviceProperties2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceProperties2 != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceProperties2(phys_dev_term->phys_dev, pProperties);
     } else {
         // Emulate the call
@@ -8434,9 +8440,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceFormatProperties2(VkPhysi
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceFormatProperties2 fpGetPhysicalDeviceFormatProperties2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceFormatProperties2 = icd_term->dispatch.GetPhysicalDeviceFormatProperties2KHR;
     } else {
         fpGetPhysicalDeviceFormatProperties2 = icd_term->dispatch.GetPhysicalDeviceFormatProperties2;
@@ -8444,6 +8452,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceFormatProperties2(VkPhysi
 
     if (fpGetPhysicalDeviceFormatProperties2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceFormatProperties2 != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceFormatProperties2(phys_dev_term->phys_dev, format, pFormatProperties);
     } else {
         // Emulate the call
@@ -8470,9 +8479,11 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceImageFormatProperties
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceImageFormatProperties2 fpGetPhysicalDeviceImageFormatProperties2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceImageFormatProperties2 = icd_term->dispatch.GetPhysicalDeviceImageFormatProperties2KHR;
     } else {
         fpGetPhysicalDeviceImageFormatProperties2 = icd_term->dispatch.GetPhysicalDeviceImageFormatProperties2;
@@ -8480,6 +8491,7 @@ VKAPI_ATTR VkResult VKAPI_CALL terminator_GetPhysicalDeviceImageFormatProperties
 
     if (fpGetPhysicalDeviceImageFormatProperties2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceImageFormatProperties2 != NULL && "Intentionally crash if the core function is null");
         return fpGetPhysicalDeviceImageFormatProperties2(phys_dev_term->phys_dev, pImageFormatInfo, pImageFormatProperties);
     } else {
         // Emulate the call
@@ -8506,9 +8518,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceQueueFamilyProperties2(
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceQueueFamilyProperties2 fpGetPhysicalDeviceQueueFamilyProperties2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceQueueFamilyProperties2 = icd_term->dispatch.GetPhysicalDeviceQueueFamilyProperties2KHR;
     } else {
         fpGetPhysicalDeviceQueueFamilyProperties2 = icd_term->dispatch.GetPhysicalDeviceQueueFamilyProperties2;
@@ -8516,6 +8530,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceQueueFamilyProperties2(
 
     if (fpGetPhysicalDeviceQueueFamilyProperties2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceQueueFamilyProperties2 != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceQueueFamilyProperties2(phys_dev_term->phys_dev, pQueueFamilyPropertyCount, pQueueFamilyProperties);
     } else {
         // Emulate the call
@@ -8561,9 +8576,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceMemoryProperties2(
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceMemoryProperties2 fpGetPhysicalDeviceMemoryProperties2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceMemoryProperties2 = icd_term->dispatch.GetPhysicalDeviceMemoryProperties2KHR;
     } else {
         fpGetPhysicalDeviceMemoryProperties2 = icd_term->dispatch.GetPhysicalDeviceMemoryProperties2;
@@ -8571,6 +8588,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceMemoryProperties2(
 
     if (fpGetPhysicalDeviceMemoryProperties2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceMemoryProperties2 != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceMemoryProperties2(phys_dev_term->phys_dev, pMemoryProperties);
     } else {
         // Emulate the call
@@ -8597,16 +8615,20 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceSparseImageFormatProperti
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceSparseImageFormatProperties2 fpGetPhysicalDeviceSparseImageFormatProperties2 = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         fpGetPhysicalDeviceSparseImageFormatProperties2 = icd_term->dispatch.GetPhysicalDeviceSparseImageFormatProperties2KHR;
     } else {
         fpGetPhysicalDeviceSparseImageFormatProperties2 = icd_term->dispatch.GetPhysicalDeviceSparseImageFormatProperties2;
     }
 
-    if (fpGetPhysicalDeviceSparseImageFormatProperties2 != NULL || !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
+    if (fpGetPhysicalDeviceSparseImageFormatProperties2 != NULL ||
+        !inst->enabled_known_extensions.khr_get_physical_device_properties2) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceSparseImageFormatProperties2 != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceSparseImageFormatProperties2(phys_dev_term->phys_dev, pFormatInfo, pPropertyCount, pProperties);
     } else {
         // Emulate the call
@@ -8663,9 +8685,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceExternalBufferProperties(
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceExternalBufferProperties fpGetPhysicalDeviceExternalBufferProperties = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_external_memory_capabilities) {
+    if (inst->enabled_known_extensions.khr_external_memory_capabilities) {
         fpGetPhysicalDeviceExternalBufferProperties = icd_term->dispatch.GetPhysicalDeviceExternalBufferPropertiesKHR;
     } else {
         fpGetPhysicalDeviceExternalBufferProperties = icd_term->dispatch.GetPhysicalDeviceExternalBufferProperties;
@@ -8673,6 +8697,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceExternalBufferProperties(
 
     if (fpGetPhysicalDeviceExternalBufferProperties || !inst->enabled_known_extensions.khr_external_memory_capabilities) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceExternalBufferProperties != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceExternalBufferProperties(phys_dev_term->phys_dev, pExternalBufferInfo, pExternalBufferProperties);
     } else {
         // Emulate the call
@@ -8703,17 +8728,22 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceExternalSemaphoreProperti
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceExternalSemaphoreProperties fpGetPhysicalDeviceExternalSemaphoreProperties = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_external_semaphore_capabilities) {
+    if (inst->enabled_known_extensions.khr_external_semaphore_capabilities) {
         fpGetPhysicalDeviceExternalSemaphoreProperties = icd_term->dispatch.GetPhysicalDeviceExternalSemaphorePropertiesKHR;
     } else {
         fpGetPhysicalDeviceExternalSemaphoreProperties = icd_term->dispatch.GetPhysicalDeviceExternalSemaphoreProperties;
     }
 
-    if (fpGetPhysicalDeviceExternalSemaphoreProperties != NULL || !inst->enabled_known_extensions.khr_external_semaphore_capabilities) {
+    if (fpGetPhysicalDeviceExternalSemaphoreProperties != NULL ||
+        !inst->enabled_known_extensions.khr_external_semaphore_capabilities) {
         // Pass the call to the driver
-        fpGetPhysicalDeviceExternalSemaphoreProperties(phys_dev_term->phys_dev, pExternalSemaphoreInfo, pExternalSemaphoreProperties);
+        assert(fpGetPhysicalDeviceExternalSemaphoreProperties != NULL && "Intentionally crash if the core function is null");
+        fpGetPhysicalDeviceExternalSemaphoreProperties(phys_dev_term->phys_dev, pExternalSemaphoreInfo,
+                                                       pExternalSemaphoreProperties);
     } else {
         // Emulate the call
         loader_log(icd_term->this_instance, VK_DEBUG_REPORT_INFORMATION_BIT_EXT, 0,
@@ -8746,9 +8776,11 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceExternalFenceProperties(
     struct loader_icd_term *icd_term = phys_dev_term->this_icd_term;
     const struct loader_instance *inst = icd_term->this_instance;
 
+    assert(inst != NULL && "Instance must be valid");
+
     // Get the function pointer to use to call into the ICD. This could be the core or KHR version
     PFN_vkGetPhysicalDeviceExternalFenceProperties fpGetPhysicalDeviceExternalFenceProperties = NULL;
-    if (inst != NULL && inst->enabled_known_extensions.khr_external_fence_capabilities) {
+    if (inst->enabled_known_extensions.khr_external_fence_capabilities) {
         fpGetPhysicalDeviceExternalFenceProperties = icd_term->dispatch.GetPhysicalDeviceExternalFencePropertiesKHR;
     } else {
         fpGetPhysicalDeviceExternalFenceProperties = icd_term->dispatch.GetPhysicalDeviceExternalFenceProperties;
@@ -8756,6 +8788,7 @@ VKAPI_ATTR void VKAPI_CALL terminator_GetPhysicalDeviceExternalFenceProperties(
 
     if (fpGetPhysicalDeviceExternalFenceProperties != NULL || !inst->enabled_known_extensions.khr_external_fence_capabilities) {
         // Pass the call to the driver
+        assert(fpGetPhysicalDeviceExternalFenceProperties != NULL && "Intentionally crash if the core function is null");
         fpGetPhysicalDeviceExternalFenceProperties(phys_dev_term->phys_dev, pExternalFenceInfo, pExternalFenceProperties);
     } else {
         // Emulate the call
