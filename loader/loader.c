@@ -2286,7 +2286,7 @@ static VkResult loader_scanned_icd_init(const struct loader_instance *inst, stru
     icd_tramp_list->scanned_list = loader_instance_heap_alloc(inst, icd_tramp_list->capacity, VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE);
     if (NULL == icd_tramp_list->scanned_list) {
         loader_log(inst, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
-                   "loader_scanned_icd_init: Realloc failed for layer list when "
+                   "loader_scanned_icd_init: Alloc failed for layer list when "
                    "attempting to add new layer");
         err = VK_ERROR_OUT_OF_HOST_MEMORY;
     }
@@ -2961,7 +2961,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
     {                                                                      \
         var = cJSON_GetObjectItem(node, #var);                             \
         if (var == NULL) {                                                 \
-            layer_node = layer_node->next;                                 \
             loader_log(inst, VK_DEBUG_REPORT_WARNING_BIT_EXT, 0,           \
                        "Didn't find required layer object %s in manifest " \
                        "JSON file, skipping this layer",                   \
@@ -2973,7 +2972,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
     {                                                                          \
         item = cJSON_GetObjectItem(node, #var);                                \
         if (item == NULL) {                                                    \
-            layer_node = layer_node->next;                                     \
             loader_log(inst, VK_DEBUG_REPORT_WARNING_BIT_EXT, 0,               \
                        "Didn't find required layer value %s in manifest JSON " \
                        "file, skipping this layer",                            \
@@ -2982,7 +2980,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
         }                                                                      \
         temp = cJSON_Print(item);                                              \
         if (temp == NULL) {                                                    \
-            layer_node = layer_node->next;                                     \
             loader_log(inst, VK_DEBUG_REPORT_WARNING_BIT_EXT, 0,               \
                        "Problem accessing layer value %s in manifest JSON "    \
                        "file, skipping this layer",                            \
@@ -3004,7 +3001,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
     // Add list entry
     if (!strcmp(type, "DEVICE")) {
         loader_log(inst, VK_DEBUG_REPORT_WARNING_BIT_EXT, 0, "Device layers are deprecated skipping this layer");
-        layer_node = layer_node->next;
         goto out;
     }
 
@@ -3012,7 +3008,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
     // layers that must work with older loaders
     if (!strcmp(type, "INSTANCE") || !strcmp(type, "GLOBAL")) {
         if (layer_instance_list == NULL) {
-            layer_node = layer_node->next;
             goto out;
         }
         props = loaderGetNextLayerPropertySlot(inst, layer_instance_list);
@@ -3026,7 +3021,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
             props->type_flags |= VK_LAYER_TYPE_FLAG_EXPLICIT_LAYER;
         }
     } else {
-        layer_node = layer_node->next;
         goto out;
     }
 
@@ -3114,7 +3108,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
 
         temp = cJSON_Print(library_path);
         if (NULL == temp) {
-            layer_node = layer_node->next;
             loader_log(inst, VK_DEBUG_REPORT_WARNING_BIT_EXT, 0,
                        "Problem accessing layer value library_path in manifest JSON "
                        "file, skipping this layer");
@@ -3283,7 +3276,6 @@ static VkResult loaderReadLayerJson(const struct loader_instance *inst, struct l
             loader_log(inst, VK_DEBUG_REPORT_WARNING_BIT_EXT, 0,
                        "Didn't find required layer child value disable_environment"
                        "in manifest JSON file, skipping this layer");
-            layer_node = layer_node->next;
             goto out;
         }
         strncpy(props->disable_env_var.name, disable_environment->child->string, sizeof(props->disable_env_var.name));
