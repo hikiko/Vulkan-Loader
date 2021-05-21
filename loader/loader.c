@@ -7061,7 +7061,16 @@ out:
     if (VK_SUCCESS != res) {
         if (NULL != new_phys_devs) {
             for (uint32_t i = 0; i < total_count; i++) {
-                loader_instance_heap_free(inst, new_phys_devs[i]);
+                bool found = false;
+                for (uint32_t old_idx = 0; old_idx < inst->phys_dev_count_tramp; old_idx++) {
+                    if (new_phys_devs[i] == inst->phys_devs_tramp[old_idx]) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    loader_instance_heap_free(inst, new_phys_devs[i]);
+                }
             }
             loader_instance_heap_free(inst, new_phys_devs);
         }
@@ -7241,7 +7250,7 @@ VkResult setupLoaderTermPhysDevs(struct loader_instance *inst) {
         loader_log(inst, VK_DEBUG_REPORT_ERROR_BIT_EXT, 0,
                    "setupLoaderTermPhysDevs:  Failed to allocate temporary "
                    "ICD Physical device info array of size %d",
-                   inst->total_gpu_count);
+                   inst->total_icd_count);
         res = VK_ERROR_OUT_OF_HOST_MEMORY;
         goto out;
     }
@@ -7404,7 +7413,18 @@ out:
         if (NULL != new_phys_devs) {
             // We've encountered an error, so we should free the new buffers.
             for (uint32_t i = 0; i < inst->total_gpu_count; i++) {
-                loader_instance_heap_free(inst, new_phys_devs[i]);
+                bool found = false;
+                if (NULL != inst->phys_devs_term) {
+                    for (uint32_t old_idx = 0; old_idx < inst->phys_dev_count_term; old_idx++) {
+                        if (new_phys_devs[i] == inst->phys_devs_term[old_idx]) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                if (!found) {
+                    loader_instance_heap_free(inst, new_phys_devs[i]);
+                }
             }
             loader_instance_heap_free(inst, new_phys_devs);
         }
